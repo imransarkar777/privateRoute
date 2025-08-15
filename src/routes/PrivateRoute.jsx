@@ -1,18 +1,22 @@
-import React, { useContext } from "react";
+import React from "react";
+import { useContext } from "react";
 import { AuthContext } from "../Providers/AuthContext";
 import { Navigate } from "react-router-dom";
 import { Atom } from "react-loading-indicators";
-const PrivateRoute = ({ children }) => {
-  const { user, loading } = useContext(AuthContext);
 
-  if (loading) {
-    return (
-      <Atom color="#005cc7" size="large" text="Loading...." textColor="" />
-    );
-  }
+
+const PrivateRoute = ({ children }) => {
+
+  const { user } = useContext(AuthContext);
+
+  // if (loading) {
+  //   return (
+  //     <Atom color="#005cc7" size="large" text="Loading...." textColor="" />
+  //   );
+  // }
 
   if (user) {
-    children;
+    return children;
   }
 
   return <Navigate to="/login"></Navigate>;

@@ -13,17 +13,17 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(true);
 
 
-  const [loading, setLoading] = useState(null);
+//   const [loading, setLoading] = useState(null);
 
 
 
   const createUser = (email, password) => {
-    setLoading(true);
+    // setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   const signInUser = (email, password) => {
-    setLoading(true);
+    // setLoading(true);
     return signInWithEmailAndPassword(auth, email, password);
   };
 
@@ -32,7 +32,7 @@ const AuthProvider = ({ children }) => {
         const unsubscribe = onAuthStateChanged(auth, currentUser => {
             console.log("current user logged in is  - - - ",currentUser);
             setUser(currentUser);
-            setLoading(false);
+            // setLoading(false);
         
         })
 
@@ -45,15 +45,16 @@ const AuthProvider = ({ children }) => {
 
 
     const signOutUser = () => {
-        setLoading(true);
+        // setLoading(true);
         return signOut(auth);
+        // setLoading(false);
     }
 
 
 
   const authinfo = {
     user,
-    loading,
+    // loading,
     createUser,
     signInUser,
     signOutUser

@@ -1,6 +1,7 @@
 import React, { useContext } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthContext";
+import Profile from './Profile';
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
@@ -29,7 +30,12 @@ const Navbar = () => {
       <li>
         {user && (
           <>
-            <NavLink to="orders">Order Now</NavLink>
+            <li>
+            <NavLink to="/orders">Order</NavLink>
+            </li>
+            <li>
+            <NavLink to="/profile">Profile</NavLink>
+            </li>
           </>
         )}
       </li>

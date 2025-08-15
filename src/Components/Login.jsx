@@ -1,10 +1,10 @@
 import React from "react";
 import { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthContext";
 
-
 const Login = () => {
+  const navigate = useNavigate();
   const { signInUser } = useContext(AuthContext);
 
   const handleLogin = (e) => {
@@ -12,22 +12,20 @@ const Login = () => {
 
     const email = e.target.email.value;
     const password = e.target.password.value;
-    console.log("before login console");
-    console.log(email, password);
+
+    // nsole.log("before login ");
+    console.log("logged in >>>", email, password);
 
     signInUser(email, password)
       .then((result) => {
-        console.log(result);
+        console.log(result.user);
+        e.target.reset();
+        navigate("/");
       })
       .catch((e) => {
         console.log(e);
       });
   };
-
-  
-
-
-
 
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -63,6 +61,9 @@ const Login = () => {
 
           <p className="ml-3 mb-3 mr-3">
             New to this website? Please <Link to="/register">Register</Link>
+          </p>
+          <p>
+            <button className="btn btn-ghost">Google</button>
           </p>
         </div>
       </div>
