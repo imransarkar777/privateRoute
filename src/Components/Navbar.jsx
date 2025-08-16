@@ -1,16 +1,19 @@
 import React, { useContext } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "../Providers/AuthContext";
-import Profile from './Profile';
+import Profile from "./Profile";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
   // console.log(user);
 
   const handleSignOut = () => {
     signOutUser()
       .then(() => {
         console.log("user logged out success !!!");
+        navigate("/login");
       })
       .catch((e) => {
         console.log("Error - - - ", e);
@@ -30,12 +33,14 @@ const Navbar = () => {
       <li>
         {user && (
           <>
-            <li>
-            <NavLink to="/orders">Order</NavLink>
-            </li>
-            <li>
-            <NavLink to="/profile">Profile</NavLink>
-            </li>
+            <ul>
+              <li>
+                <NavLink to="/orders">Order</NavLink>
+              </li>
+              <li>
+                <NavLink to="/profile">Profile</NavLink>
+              </li>
+            </ul>
           </>
         )}
       </li>
@@ -70,7 +75,7 @@ const Navbar = () => {
             {links}
           </ul>
         </div>
-        <a className="btn btn-ghost text-xl">daisyUI</a>
+        <a className="btn btn-ghost text-xl">Private Route</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>

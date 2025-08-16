@@ -12,6 +12,7 @@ import Root from "./Components/Root.jsx";
 import AuthProvider from "./Providers/AuthProvider.jsx";
 import Orders from "./Components/Orders.jsx";
 import PrivateRoute from "./routes/PrivateRoute.jsx";
+import Profile from "./Components/Profile.jsx";
 
 const router = createBrowserRouter([
   {

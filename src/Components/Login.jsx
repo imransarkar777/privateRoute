@@ -5,7 +5,7 @@ import { AuthContext } from "../Providers/AuthContext";
 
 const Login = () => {
   const navigate = useNavigate();
-  const { signInUser } = useContext(AuthContext);
+  const { signInUser, signInWithGoogle } = useContext(AuthContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -26,6 +26,16 @@ const Login = () => {
         console.log(e);
       });
   };
+
+  const handleGooglePopup = () => {
+    signInWithGoogle()
+    .then ((res) => {
+      console.log(" sign in with google popup " , res)
+    })
+    .catch((e)=> {
+      console.log("ERROR = ", e)
+    })
+  }
 
   return (
     <div className="hero bg-base-200 min-h-screen">
@@ -63,7 +73,7 @@ const Login = () => {
             New to this website? Please <Link to="/register">Register</Link>
           </p>
           <p>
-            <button className="btn btn-ghost">Google</button>
+            <button className="btn btn-ghost" onClick={handleGooglePopup}>Google</button>
           </p>
         </div>
       </div>
